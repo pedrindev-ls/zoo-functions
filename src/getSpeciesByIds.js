@@ -1,22 +1,21 @@
 const data = require('../data/zoo_data');
 
+const { species } = data;
+let animalFound = [];
+const conference = (value) => species.forEach((element) => {
+  if (element.id === value) {
+    animalFound.push(element);
+  }
+});
+
 function getSpeciesByIds(value, ...ids) {
-  const { species } = data;
-  const animalFound = [];
   if (value === undefined) {
     return animalFound;
   }
-  species.forEach((element) => {
-    if (element.id === value) {
-      animalFound.push(element);
-    }
-  });
+  animalFound = [];
+  conference(value);
   if (ids.length) {
-    species.forEach((element) => {
-      if (element.id === ids[0]) {
-        animalFound.push(element);
-      }
-    });
+    conference(ids[0]);
   }
   return animalFound;
 }
